@@ -13,9 +13,12 @@ import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
  */
 import Master from './src/components/Master';
 import Layout from './src/components/Layout';
+import Feed from './src/components/Feed';
 
 export default (
   <Route component={UserIsAuthenticated(Master)}>
-    <Route path="/" component={Layout} />
+    <Route path="/" component={Layout}>
+      <IndexRoute component={Feed} />
+    </Route>
   </Route>
 );
