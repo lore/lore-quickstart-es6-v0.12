@@ -14,6 +14,7 @@
 
 import React, { PropTypes } from 'react';
 import { AuthenticationGenerator } from 'lore-auth';
+import auth from '../utils/auth';
 
 export default AuthenticationGenerator({
   wrapperDisplayName: 'UserIsAuthenticated',
@@ -23,6 +24,6 @@ export default AuthenticationGenerator({
   // redirectQueryParamName: 'redirect',
 
   isAuthenticated () {
-    return true;
+    return auth.hasToken();
   }
 })
