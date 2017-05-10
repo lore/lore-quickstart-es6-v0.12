@@ -57,7 +57,8 @@ export default lore.connect(function(getState, props){
   return {
     tweets: getState('tweet.find', {
       pagination: {
-        page: props.location.query.page || '1'
+        page: props.location.query.page || '1',
+        populate: 'user'
       }
     })
   }
