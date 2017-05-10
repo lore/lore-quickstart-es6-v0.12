@@ -141,9 +141,9 @@ export default {
          * automatically be processed by the parse method of the corresponding model.
          */
 
-        // parse(attributes) {
-        //   return attributes;
-        // }
+        parse(attributes) {
+          return attributes.data;
+        }
 
       }
 
