@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 class Profile extends Component {
 
@@ -22,9 +23,9 @@ class Profile extends Component {
               <li>Delete your own tweets</li>
             </ul>
           </div>
-          <button className="btn btn-primary">
+          <Link className="btn btn-primary" to="/logout">
             Logout
-          </button>
+          </Link>
         </div>
       </div>
     );

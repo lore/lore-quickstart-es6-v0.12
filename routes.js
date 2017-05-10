@@ -15,10 +15,12 @@ import Master from './src/components/Master';
 import Layout from './src/components/Layout';
 import Feed from './src/components/Feed';
 import Login from './src/components/Login';
+import Logout from './src/components/Logout';
 
 export default (
   <Route>
     <Route path="/login" component={Login} />
+    <Route path="/logout" component={Logout} />
 
     <Route component={UserIsAuthenticated(Master)}>
       <Route path="/" component={Layout}>
