@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
+import EditLink from './EditLink';
 
 class Tweet extends Component {
 
@@ -25,6 +26,9 @@ class Tweet extends Component {
           <p className="list-group-item-text text">
             {tweet.data.text}
           </p>
+          <div>
+            <EditLink tweet={tweet}/>
+          </div>
         </div>
       </li>
     );
