@@ -5,10 +5,7 @@ class CreateButton extends Component {
 
   onClick() {
     function createTweet(params) {
-      lore.actions.tweet.create(_.extend(params, {
-        userId: 1,
-        createdAt: new Date().toISOString()
-      }));
+      lore.actions.tweet.create(params);
     }
 
     lore.dialog.show(function() {

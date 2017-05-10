@@ -48,7 +48,7 @@ export default lore.connect(function(getState, props){
 
   return {
     user: getState('user.byId', {
-      id: tweet.data.userId
+      id: tweet.data.user
     })
   };
 })(Tweet);

@@ -63,10 +63,9 @@ export default {
      * properties to absorb breaking API changes.
      */
 
-    parse: function(resp, options) {
-      resp.userId = resp.user;
-      return resp;
-    }
+    // parse: function(resp, options) {
+    //   return resp;
+    // }
 
     /**
      * Override the sync method if you need to modify data before sending
