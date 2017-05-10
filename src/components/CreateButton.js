@@ -3,7 +3,11 @@ import React, { Component, PropTypes } from 'react';
 class CreateButton extends Component {
 
   onClick() {
-    console.log('Create tweet!');
+    lore.dialog.show(() => {
+      return (
+        <h1>Dialog Placeholder</h1>
+      );
+    });
   }
 
   render () {
