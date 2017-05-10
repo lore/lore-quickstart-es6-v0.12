@@ -79,5 +79,10 @@
       "text": "Something is written in archaic script. I will translate... R...o...i...h...c...l...e...m? Roihclem? System error! I reversed it! It says \"Melchior!\".",
       "createdAt": "2016-11-26T04:03:25.546Z"
     }
-  ]
+  ],
+  "user": {
+    "id": 1,
+    "nickname": "ayla",
+    "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027069/a356e82a-88e1-11e6-87d8-e3e74f55c069.png"
+  }
 }

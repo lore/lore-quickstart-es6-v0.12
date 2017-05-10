@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 class Profile extends Component {
 
   render() {
-    const user = this.props.user;
+    const user = this.context.user;
 
     return (
       <div className="card profile">
@@ -32,18 +32,8 @@ class Profile extends Component {
   }
 }
 
-Profile.propTypes = {
+Profile.contextTypes = {
   user: PropTypes.object.isRequired
-};
-
-Profile.defaultProps = {
-  user: {
-    id: 1,
-    data: {
-      nickname: 'marle',
-      avatar: 'https://cloud.githubusercontent.com/assets/2637399/19027074/a37105c0-88e1-11e6-9645-3e1af37671f7.png'
-    }
-  }
 };
 
 export default Profile;

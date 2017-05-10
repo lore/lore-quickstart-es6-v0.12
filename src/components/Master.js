@@ -15,11 +15,11 @@ import '../../assets/css/main.css';
 
 class Master extends Component {
 
-  // getChildContext() {
-  //   return {
-  //     user: this.props.user
-  //   };
-  // }
+  getChildContext() {
+    return {
+      user: this.props.user
+    };
+  }
 
   componentDidMount() {
     // If you want to play with the router through the browser's dev console then
@@ -31,15 +31,15 @@ class Master extends Component {
   }
 
   render() {
-    // const user = this.props.user;
+    const user = this.props.user;
 
-    // if (user.state === PayloadStates.FETCHING) {
-    //   return (
-    //     <h1 className="loading-text">
-    //       Loading...
-    //     </h1>
-    //   )
-    // }
+    if (user.state === PayloadStates.FETCHING) {
+      return (
+        <h1 className="loading-text">
+          Loading...
+        </h1>
+      )
+    }
 
     return (
       <div>
@@ -50,16 +50,16 @@ class Master extends Component {
 
 }
 
-// Master.propTypes = {
-//   user: PropTypes.object.isRequired
-// };
+Master.propTypes = {
+  user: PropTypes.object.isRequired
+};
 
-// Master.childContextTypes = {
-//   user: PropTypes.object
-// };
+Master.childContextTypes = {
+  user: PropTypes.object
+};
 
 export default lore.connect(function(getState, props) {
   return {
-    // user: getState('currentUser')
+    user: getState('currentUser')
   };
 }, { subscribe: true })(Master);
