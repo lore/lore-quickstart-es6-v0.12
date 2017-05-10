@@ -37,15 +37,12 @@ Tweet.propTypes = {
   user: PropTypes.object.isRequired
 };
 
-Tweet.defaultProps = {
-  user: {
-    id: 1,
-    data: {
-      id: 1,
-      nickname: "lucca",
-      avatar: "https://cloud.githubusercontent.com/assets/2637399/19027072/a36f0c7a-88e1-11e6-931e-7f67fe01367b.png"
-    }
-  }
-};
+export default lore.connect(function(getState, props){
+  const tweet = props.tweet;
 
-export default Tweet;
+  return {
+    user: getState('user.byId', {
+      id: tweet.data.userId
+    })
+  };
+})(Tweet);
