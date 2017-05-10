@@ -3,6 +3,7 @@
  *
  * This file is where you define overrides for the default collection behaviors.
  */
+import auth from '../src/utils/auth';
 
 export default {
 
@@ -69,9 +70,11 @@ export default {
      * }
      */
 
-    // headers() {
-    //   return {};
-    // },
+    headers() {
+      return {
+        Authorization: `Bearer ${auth.getToken()}`
+      };
+    },
 
 
     /****************************************************************************
