@@ -51,4 +51,8 @@ Feed.defaultProps = (function() {
   }
 })();
 
-export default Feed;
+export default lore.connect(function(getState, props){
+  return {
+    tweets: getState('tweet.find')
+  }
+})(Feed);
