@@ -15,7 +15,7 @@ export default {
      * that in url in the apiRoot (e.g. 'https://www.example.com/api')
      */
 
-    // apiRoot: 'https://api.example.com',
+    apiRoot: 'http://localhost:1337',
 
     /**
      * Pluralization setting used by the framework when composing API endpoints.
