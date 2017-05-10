@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Tweet from './Tweet';
+import PayloadStates from '../constants/PayloadStates';
 
 class Feed extends Component {
 
@@ -11,6 +12,14 @@ class Feed extends Component {
 
   render() {
     const tweets = this.props.tweets;
+
+    if (tweets.state === PayloadStates.FETCHING) {
+      return (
+        <h1 className="loading-text">
+          Loading...
+        </h1>
+      )
+    }
 
     return (
       <div className="feed">
