@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Tweet from './Tweet';
 import PayloadStates from '../constants/PayloadStates';
-import { Link } from 'react-router';
+import InfiniteScrolling from '../decorators/InfiniteScrolling';
+import LoadMoreButton from './LoadMoreButton';
 
 class Feed extends Component {
 
@@ -11,35 +12,23 @@ class Feed extends Component {
     );
   }
 
-  renderPaginationLink(page, currentPage) {
-    return (
-      <li key={page} className={currentPage === String(page) ? 'active' : ''}>
-        <Link to={{ pathname: '/', query: { page: page } }}>
-          {page}
-        </Link>
-      </li>
-    );
-  }
-
   render() {
-    const tweets = this.props.tweets;
-    const currentPage = tweets.query.pagination.page;
-    const paginationLinks = [];
+    const pages = this.props.pages;
+    const numberOfPages = pages.length;
+    const firstPage = pages[0];
+    const lastPage = pages[pages.length - 1];
 
-    if (tweets.state === PayloadStates.FETCHING) {
+    if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
       return (
         <h1 className="loading-text">
           Loading...
         </h1>
-      )
+      );
     }
 
-    // calculate the number of pagination links from our metadata, then
-    // generate an array of pagination links
-    let numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
-    for (var pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
-      paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
-    }
+    const tweetListItems = _.flatten(pages.map(function(tweets) {
+      return tweets.data.map(this.renderTweet);
+    }.bind(this)));
 
     return (
       <div className="feed">
@@ -47,21 +36,21 @@ class Feed extends Component {
           Feed
         </h2>
         <ul className="media-list tweets">
-          {tweets.data.map(this.renderTweet)}
+          {tweetListItems}
         </ul>
-        <nav>
-          <ul className="pagination">
-            {paginationLinks}
-          </ul>
-        </nav>
+        <LoadMoreButton
+          lastPage={lastPage}
+          onLoadMore={this.props.onLoadMore}
+          nextPageMetaField="nextPage" />
       </div>
     );
   }
 
 }
 
-Feed.propTypes ={
-  tweets: PropTypes.object.isRequired
+Feed.propTypes = {
+  pages: PropTypes.array.isRequired,
+  onLoadMore: PropTypes.func.isRequired
 };
 
 export default lore.connect(function(getState, props){
@@ -72,4 +61,8 @@ export default lore.connect(function(getState, props){
       }
     })
   }
-})(Feed);
+})(
+InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
+Feed
+)
+);
