@@ -1,12 +1,20 @@
 import React, { Component, PropTypes } from 'react';
+import _ from 'lodash';
 
 class CreateButton extends Component {
 
   onClick() {
-    lore.dialog.show(() => {
-      return (
-        <h1>Dialog Placeholder</h1>
-      );
+    function createTweet(params) {
+      lore.actions.tweet.create(_.extend(params, {
+        userId: 1,
+        createdAt: new Date().toISOString()
+      }));
+    }
+
+    lore.dialog.show(function() {
+      return lore.dialogs.tweet.create({
+        onSubmit: createTweet
+      });
     });
   }
 

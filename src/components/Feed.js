@@ -6,7 +6,7 @@ class Feed extends Component {
 
   renderTweet(tweet) {
     return (
-      <Tweet key={tweet.id} tweet={tweet} />
+      <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
     );
   }
 
