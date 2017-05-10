@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Auth0Lock from 'auth0-lock';
+import auth from '../utils/auth';
 
 class Login extends Component {
 
@@ -15,6 +16,10 @@ class Login extends Component {
   componentDidMount() {
     this.lock = this.getLock();
     this.showLogin();
+  }
+
+  componentWillUnmount() {
+    this.lock.hide();
   }
 
   getLock(){
@@ -33,7 +38,8 @@ class Login extends Component {
   }
 
   onAuthentication(authResult) {
-    // save user token to localStorage
+    auth.saveToken(authResult.idToken);
+    this.props.router.push('/');
   }
 
   showLogin(){
